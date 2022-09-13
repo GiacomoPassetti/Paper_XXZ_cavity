@@ -1,9 +1,10 @@
+from turtle import color
 import numpy as np
 import matplotlib.pyplot as plt
 import os
 from matplotlib import gridspec
 import matplotlib as mpl
-
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 
 
@@ -46,16 +47,22 @@ PT = PT_A(US_dmrg, Omega, g0)
 
 
 nphs =[]
-fig = plt.figure(figsize=(3.2, 2.5), dpi = 800) 
 nrow = 1
-ncol = 2
-gs = gridspec.GridSpec(nrow, ncol,width_ratios = [1, 1],
-             wspace=0.0, hspace=0.0, top=0.95, bottom=0.16, left=0.2, right=0.95)
+ncol = 3
+#gs_dict = dict(width_ratios = [1., 0.1, 0.5], height_ratios=[1.], wspace=0.0, hspace=0.0, top=0.95, bottom=0.18, left=0.2, right=0.82)
+#fig, axd = plt.subplot_mosaic([['left', 'middle', 'right']], figsize = (3.2, 2.5), gridspec_kw=gs_dict)
+fig = plt.figure(figsize=(3.5, 2.5), dpi = 800)
+gs = gridspec.GridSpec(nrow, ncol,width_ratios = [1, 0.1, 1],
+         wspace=0.0, hspace=0.0, top=0.95, bottom=0.18, left=0.22, right=0.95)
 ax1 = plt.subplot(gs[0,0])
-ax2 = plt.subplot(gs[0,1])
+axSpace = plt.subplot(gs[0,1])
+ax2 = plt.subplot(gs[0,2])
+axSpace.axis('off')
+colors = plt.cm.bone(np.linspace(0, 1, 7))
 
 
 final_ID = "L_"+"{:.2f}".format(L)+"chi_"+str(1000)+"g_"+"{:.2f}".format(g0)+"omega_"+"{:.3f}".format(Omega)
+n_phot = np.load(os.path.join("../XXZ/photon_occupation", "photon_occupation_jointed"+final_ID+".npy"))
 A_sqd = np.load(os.path.join("../XXZ/photon_occupation", "A_sqd_jointed"+final_ID+".npy"))
 T_sq = np.load(os.path.join("../XXZ/kinetic_operator", "re_k_Jointed"+final_ID+".npy"))
 
@@ -65,53 +72,100 @@ US_squeeze = np.arange(0, 4.0, 0.2)
 US_squeeze = US_dmrg
 US_squeeze_plot = []
 ADD_sq = []
+nph_SQ = []
+
 for i in range(52):
+  
   print(US_squeeze[i], T_sq[i])
   if T_sq[i] == 0:
     print("fail")
   else:
     ADD_sq.append(squeezing(US_squeeze[i], 2*T_sq[i]))
     US_squeeze_plot.append(US_squeeze[i])
+    nph_SQ.append(n_phot[i])
 
 
 final_ID = "L_"+"{:.2f}".format(L)+"chi_"+str(chi)+"g_"+"{:.2f}".format(g0)
 MF_A = np.load(os.path.join("MF_data", "mean_field_A_sqd_jointed"+final_ID+".npy"))
 PT = PT + MF_A
-ax1.plot(US_dmrg, A_sqd, color = 'lightcoral', label= "DMRG", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6)
+
+A_sqd = A_sqd - 1 - (2*n_phot)
+MF_A = MF_A - 1- (2*n_phot)
+ADD_sq = np.array(ADD_sq)
+nph_SQ = np.array(nph_SQ)
+ADD_sq = ADD_sq - 1- (2*nph_SQ)
+ax1.plot(US_dmrg[:33], A_sqd[:33], color = 'lightcoral', label= "DMRG", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6, zorder = 666)
 ax1.plot(US_dmrg, MF_A, ls = "--", color = "black", label = "MF",  linewidth = 0.8)
 #ax2.plot(US_dmrg, PT, ls = "--", color = "gray", label = "PT")
 #ax1.plot(US_dmrg, PT, ls = "--", color = "gray", label = "PT")
 
-ax1.set_xlim(0, 4)
+ax1.set_xlim(0, 4.12)
 #ax.legend()
-ax1.plot(US_squeeze_plot, ADD_sq, zorder = -666, label = "Eq.~")
-ax2.plot(US_squeeze_plot, ADD_sq, label = "Eq.~")
-ax1.set_xlabel(r"$U$", fontsize = fontsize)
+ax1.plot(US_squeeze_plot, ADD_sq, zorder = -666, label = "Eq.(11)", color = 'cornflowerblue')
+ax2.plot(US_squeeze_plot[31:], ADD_sq[31:], label = "Eq.~", color = 'cornflowerblue')
+ax1.set_xlabel(r"$U$", fontsize = fontsize, loc = "right")
 #ax1.set_xlabel(r"$U$", fontsize = fontsize, loc = "right")
-ax1.set_ylabel(r"$<\left(a+a^{\dagger}\right)^{2}>$", fontsize = fontsize)
-ax2.plot(US_dmrg, A_sqd, color = 'lightcoral', label= "DMRG", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6)
-ax2.plot(US_dmrg, MF_A, ls = "--", color = "black", label = "MF",  linewidth = 0.8)
-ax2.set_xscale("log")
-ax2.set_xlim(4, 100)
+ax1.set_ylabel(r"$\langle aa + a^{\dagger}a^{\dagger}\rangle $", fontsize = fontsize)
+ax2.plot(US_dmrg[33:], A_sqd[33:], color = 'lightcoral', label= "DMRG", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6)
+ax2.plot(US_dmrg[33:], MF_A[33:], ls = "--", color = "black", label = "MF",  linewidth = 0.8)
+ax2.set_xlim(2, 100)
+
 ax2.set_yticks([])
-ax2.set_xticks([10, 100])
-ax2.text(4., 0.95, r"$<(a+a^{\dagger})> = 0$", fontsize = 10)
-ax1.set_ylim(0.94, 1)
-ax2.set_ylim(0.94, 1)
+
+ax2.set_xticks([25, 50, 75, 100])
+ax2.set_xticklabels([r"$25$", r"$50$", r"$75$", "$100$"] ,fontsize = fontsize)
+
+#ax2.text(8., -0.05, r"$\langle a + a^{\dagger}\rangle = 0$", fontsize = 10)
+#ax1.set_ylim(0.94, 1)
+#ax2.set_ylim(0.94, 1)
 ax1.set_xticks([0, 1, 2, 3, 4], )
 ax1.set_xticklabels([r"$0$", "$1$", "$2$", "$3$", "$4$"] ,fontsize = fontsize)
-ax1.set_yticks([0.94, 0.96, 0.98, 1], )
-ax1.set_yticklabels([r"$0.94$", "$0.96$", "$0.98$", "$1$"] ,fontsize = fontsize)
+#ax1.set_yticks([0.94, 0.96, 0.98, 1], )
+#ax1.set_yticklabels([r"$0.94$", "$0.96$", "$0.98$", "$1$"] ,fontsize = fontsize)
 for axis in ['top','bottom','left','right']:
-   ax1.spines[axis].set_linewidth(0.5)
-   ax2.spines[axis].set_linewidth(0.5)
+    ax1.spines[axis].set_linewidth(0.5)
+    ax2.spines[axis].set_linewidth(0.5)
+for axis in ['right']:
+    ax1.spines[axis].set_linewidth(0.0)
+
+    
+for axis in ['left']:
+    ax2.spines[axis].set_linewidth(0.0)
+
 #ax.set_xscale("log")
 #ax.set_yscale("log")
 
+ax1.set_ylim(-0.06, 0.001)
+ax2.set_ylim(-0.06, 0.001)
+ax1.text(1, -0.03, "BKT", color = "silver")
+ax1.axvline(2, 0, 1, zorder = 0, ls = "dashdot", color = "silver", linewidth = 0.85)
 legend = ax1.legend(fontsize=6, loc='upper left', edgecolor='black', ncol=1)
 legend.get_frame().set_alpha(0.)
 legend.get_frame().set_boxstyle('Square', pad=0.1)
 legend.get_frame().set_linewidth(0.0)
+ax1.set_clip_on(False)
+ax2.set_clip_on(False)
+axins = inset_axes(ax2, width=0.62, height=0.8, loc = "center right")
+
+myblue5 = '#406080'
+myyellow4 = '#E6BB65'
+frontBarColor = myblue5
+backBarColor = myyellow4
+from fig_1b_inset import inset_1b
+inset_1b(axins)
+ax1.plot([3], MF_A[21], marker = "o", markersize=7,markeredgewidth= 0.8, markeredgecolor = "black", zorder = 1000, markerfacecolor="None")
+ax1.plot([3], A_sqd[21], marker = "o", markersize=7, markeredgewidth= 0.8,markeredgecolor = "black", zorder = 1000, markerfacecolor="None")
+from matplotlib.patches import ConnectionPatch
+xy1 = (3,MF_A[21])
+xy2 = (45, -0.045)
+con = ConnectionPatch(xyA=xy1, xyB=xy2, coordsA="data", coordsB="data",
+                      axesA=ax1, axesB=ax2, color="black", lw = 0.5)
+xy1 = (3,A_sqd[21])
+xy2 = (20, -0.038)
+conB = ConnectionPatch(xyA=xy1, xyB=xy2, coordsA="data", coordsB="data",
+                      axesA=ax1, axesB=ax2, color="black", lw = 0.5)
+ax2.add_artist(con)
+ax2.add_artist(conB)
 plt.savefig(os.path.join("plots","fig1b"+".png"))
 
 #fig, ax = plt.subplots()
