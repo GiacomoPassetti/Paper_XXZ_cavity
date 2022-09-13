@@ -1,0 +1,84 @@
+/var/spool/slurmd/job5422940/slurm_script: line 19: MKL_NUM_THREADS: command not found
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config TwoSiteDMRGEngine:
+['start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config trunc_params:
+['max_E_err', 'max_S_err', 'mixer', 'start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config TwoSiteDMRGEngine:
+['start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config trunc_params:
+['max_E_err', 'max_S_err', 'mixer', 'start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config TwoSiteDMRGEngine:
+['start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config trunc_params:
+['max_E_err', 'max_S_err', 'mixer', 'start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config TwoSiteDMRGEngine:
+['start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config trunc_params:
+['max_E_err', 'max_S_err', 'mixer', 'start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config TwoSiteDMRGEngine:
+['start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config trunc_params:
+['max_E_err', 'max_S_err', 'mixer', 'start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config TwoSiteDMRGEngine:
+['start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config trunc_params:
+['max_E_err', 'max_S_err', 'mixer', 'start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config TwoSiteDMRGEngine:
+['start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+/u/ceckhardt/.local/lib/python3.7/site-packages/tenpy/tools/params.py:233: UserWarning: unused options for config trunc_params:
+['max_E_err', 'max_S_err', 'mixer', 'start_env', 'update_env', 'verbose']
+  warnings.warn(msg.format(keys=sorted(unused), name=self.name))
+at chi:  200
+True
+at chi:  400
+True
+at chi:  600
+True
+at chi:  800
+True
+at chi:  1000
+True
+at chi:  1200
+True
+at chi:  1500
+True
+at chi:  2000
+True
+0
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: ceckhardt(84591)
+Job name:  GS_$
+Node list: co6503
+Job start: Tue May  3 16:40:38 CEST 2022
+Job end:   Tue May  3 16:41:27 CEST 2022
+Work dir:  /cobra/u/ceckhardt/XXZ
+Command:   (null)
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID           JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode 
+------------ ---------- ------ ------ ------ ------------ ------------ ---------- -------- 
+5422940            GS_$      1             4                             00:00:49      0:0 
+  

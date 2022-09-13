@@ -1,0 +1,29 @@
+/var/spool/slurmd/job5422694/slurm_script: line 24: MKL_NUM_THREADS: command not found
+  File "gs_progressive.py", line 159
+    if(chi=2000):
+                ^
+IndentationError: unindent does not match any outer indentation level
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: ceckhardt(84591)
+Job name:  XXZ
+Node list: co6501
+Job start: Tue May  3 16:11:10 CEST 2022
+Job end:   Tue May  3 16:11:12 CEST 2022
+Work dir:  /cobra/u/ceckhardt/XXZ
+Command:   /cobra/u/ceckhardt/XXZ/singleBatchJob.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID           JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode 
+------------ ---------- ------ ------ ------ ------------ ------------ ---------- -------- 
+5422694             XXZ      1            20                             00:00:02      1:0 
+  

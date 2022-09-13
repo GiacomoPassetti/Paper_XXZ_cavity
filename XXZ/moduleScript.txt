@@ -1,0 +1,5 @@
+module purge
+module load anaconda
+
+export PATH=$PATH:/u/ceckhardt/.local/bi
+

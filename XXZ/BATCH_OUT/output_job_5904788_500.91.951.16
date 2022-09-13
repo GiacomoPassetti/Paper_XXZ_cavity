@@ -1,0 +1,35 @@
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: physics-tenpy in /cobra/u/ceckhardt/.local/lib/python3.7/site-packages (0.9.0)
+Requirement already satisfied: scipy>=0.18 in /cobra/u/system/soft/SLE_12/packages/x86_64/anaconda/3/2020.02/lib/python3.7/site-packages (from physics-tenpy) (1.4.1)
+Requirement already satisfied: numpy>=1.13 in /cobra/u/system/soft/SLE_12/packages/x86_64/anaconda/3/2020.02/lib/python3.7/site-packages (from physics-tenpy) (1.18.1)
+Requirement already satisfied: Cython>=0.29 in /cobra/u/system/soft/SLE_12/packages/x86_64/anaconda/3/2020.02/lib/python3.7/site-packages (from physics-tenpy) (0.29.15)
+Requirement already satisfied: setuptools>=30.3.0 in /cobra/u/system/soft/SLE_12/packages/x86_64/anaconda/3/2020.02/lib/python3.7/site-packages (from physics-tenpy) (45.2.0.post20200210)
+at chi:  1000
+True
+14.805586990309195 4.8506591734319685e-15
+(0.04995517731722324-1.5735053103714145e-15j)
+0
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: ceckhardt(84591)
+Job name:  1.951.
+Node list: co3630
+Job start: Sat Sep 10 15:52:30 CEST 2022
+Job end:   Sat Sep 10 16:28:57 CEST 2022
+Work dir:  /cobra/u/ceckhardt/XXZ
+Command:   /u/ceckhardt/XXZ/scripts/batchScriptTemp.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID           JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode 
+------------ ---------- ------ ------ ------ ------------ ------------ ---------- -------- 
+5904788          1.951.      1            80                             00:36:27      0:0 
+  

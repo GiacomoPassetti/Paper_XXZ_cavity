@@ -1,0 +1,28 @@
+/var/spool/slurmd/job5427072/slurm_script: line 20: MKL_NUM_THREADS: command not found
+/var/spool/slurmd/job5427072/slurm_script: line 23: 30514 Killed                  python gs_progressive.py 110 4. 3.9 2
+137
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=5427072.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: ceckhardt(84591)
+Job name:  GS_3.9
+Node list: co1098
+Job start: Fri May  6 11:41:33 CEST 2022
+Job end:   Sat May  7 06:57:36 CEST 2022
+Work dir:  /cobra/u/ceckhardt/XXZ
+Command:   /u/ceckhardt/XXZ/scripts/batchScriptTemp.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID           JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode 
+------------ ---------- ------ ------ ------ ------------ ------------ ---------- -------- 
+5427072          GS_3.9      1            80                             19:16:03    0:125 
+  

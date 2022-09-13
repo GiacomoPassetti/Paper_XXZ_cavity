@@ -1,0 +1,37 @@
+Defaulting to user installation because normal site-packages is not writeable
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x2b18eed49b38>: Failed to establish a new connection: [Errno 101] Network is unreachable',)': /simple/physics-tenpy/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x2b18eed47710>: Failed to establish a new connection: [Errno 101] Network is unreachable',)': /simple/physics-tenpy/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x2b18eed47eb8>: Failed to establish a new connection: [Errno 101] Network is unreachable',)': /simple/physics-tenpy/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x2b18eed472b0>: Failed to establish a new connection: [Errno 101] Network is unreachable',)': /simple/physics-tenpy/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x2b18eed47630>: Failed to establish a new connection: [Errno 101] Network is unreachable',)': /simple/physics-tenpy/
+ERROR: Could not find a version that satisfies the requirement physics-tenpy (from versions: none)
+ERROR: No matching distribution found for physics-tenpy
+Traceback (most recent call last):
+  File "gs_progressive_v5.py", line 1, in <module>
+    import tenpy
+ImportError: No module named tenpy
+1
+                                  
+================================= 
+Global information about the job: 
+================================= 
+  
+Job owner: ceckhardt(84591)
+Job name:  3.8
+Node list: co5632
+Job start: Thu Aug 11 18:28:53 CEST 2022
+Job end:   Thu Aug 11 18:35:23 CEST 2022
+Work dir:  /cobra/u/ceckhardt/XXZ
+Command:   /u/ceckhardt/XXZ/scripts/batchScriptTemp.sh
+  
+  
+  
+==========================================================================================
+Information on jobsteps (Note: MaxRSS/AveRSS is the maximum/average over all 
+tasks of the per-task memory high-water marks; cf. "man sacct"): 
+==========================================================================================
+  
+JobID           JobName NNodes NTasks  NCPUS       MaxRSS       AveRSS    Elapsed ExitCode 
+------------ ---------- ------ ------ ------ ------------ ------------ ---------- -------- 
+5814533             3.8      1            80                             00:06:30      0:0 
+  
