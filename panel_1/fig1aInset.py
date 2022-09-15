@@ -8,7 +8,7 @@ def plotPtGSWithCoh(ax, chi, g0, Omega):
     #cohState = coherentState.getCoherentStateForN(N)
     #cohState = coherentState.getSqueezedState(eta, T) + 1e-32
 
-    colors = plt.cm.copper(np.linspace(0, 1, 5))
+    colors = plt.cm.bone(np.linspace(0, 1, 7))
 
     Ussr1 = np.array([0.0, 0.25, 0.5, 0.75, 1, 1.25])
     Ussr2 = np.arange(1.5, 4.1, 0.1)
@@ -21,12 +21,12 @@ def plotPtGSWithCoh(ax, chi, g0, Omega):
     for i in range(len(Ls)):
        final_ID = "L_"+"{:.2f}".format(Ls[i])+"chi_"+str(chi)+"g_"+"{:.2f}".format(g0)+"omega_"+"{:.3f}".format(Omega)
        dat = np.load(os.path.join("../XXZ/photon_occupation", "photon_occupation_jointed"+final_ID+".npy"))
-       ax.plot(Ussr, dat, color = colors[1+i],label=r"$L=$"+str(Ls[i]))
+       ax.plot(Ussr, dat, color = colors[-3-i],label=r"$L=$"+str(Ls[i]), lw = 1)
     L = 210
     new_U = np.arange(0, 4.2, 0.2)
     final_ID = "new_U_L_"+"{:.2f}".format(L)+"chi_"+str(chi)+"g_"+"{:.2f}".format(g0)+"omega_"+"{:.3f}".format(Omega)
     dat = np.load(os.path.join("../XXZ/photon_occupation", "photon_occupation_jointed"+final_ID+".npy"))
-    ax.plot(new_U, dat, color = colors[2+i],label=r"$L=$"+str(L))
+    ax.plot(new_U, dat, color = colors[1],label=r"$L=$"+str(L), lw = 1)
 
     #ax.vlines(2.5, 0, 0.0025, colors='red', ls='--', linewidth = 0.5)
 

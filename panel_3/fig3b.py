@@ -41,12 +41,12 @@ fontsize = 10
 nrow = 1
 ncol = 1
 fig = plt.figure(figsize=(3.2, 2.7), dpi = 800) 
-colors = plt.cm.copper(np.linspace(0, 1, 5))
+
 gs = gridspec.GridSpec(nrow, ncol,
          wspace=0.0, hspace=0.0, top=0.91, bottom=0.18, left=0.3, right=0.95) 
 ax1 = plt.subplot(gs[0,0])
 
-colors = plt.cm.copper(np.linspace(0, 1, 5))
+colors = plt.cm.bone(np.linspace(0, 1, 7))
 
 Ls = [110]
 chis = [1000]
@@ -65,7 +65,7 @@ renormU = np.load(os.path.join("../XXZ/correlation_functions", "correlation_func
 final_ID = "correlation_functions_jointedL_"+"{:.2f}".format(Ls[i])+"chi_"+str(chis[i])+"g_0.00omega_2.000"
 data_g0 = np.load(os.path.join("data", final_ID+".npy")).reshape(32)
 renormU = renormU[0:32] - data_g0
-ax1.plot(Ussr[0:32], renormU, color = 'lightgreen', label= r"$t_{eff}$")
+ax1.plot(Ussr[0:32], renormU, color = 'mediumpurple', label= r"$t_{eff}$")
 
 
 

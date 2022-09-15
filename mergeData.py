@@ -16,11 +16,11 @@ Us1 = np.array([0.0, 0.25, 0.5, 0.75, 1, 1.25])
 Us2 = np.arange(1.5, 4.1, 0.1)
 Us = np.append(Us1, Us2)
 Us = np.append(Us, np.logspace(np.log10(4), 2, 20))
-L = 50
+L = 210
 Nmax = 16
 chi = 1000
 Omega = 1
-g0 = 0
+g0 = 0.3
 
 nphs = []
 correlation = []

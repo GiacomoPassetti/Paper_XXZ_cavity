@@ -88,7 +88,7 @@ colors = plt.cm.bone(np.linspace(0, 1, 7))
 
 nrow = 1
 ncol = 3
-fig = plt.figure(figsize=(3.2, 1.5), dpi = 800) 
+fig = plt.figure(figsize=(3.2, 3.2), dpi = 800) 
 
 gs = gridspec.GridSpec(nrow, ncol, width_ratios=[1, 0.1, 1],
          wspace=0.0, hspace=0.0, top=0.95, bottom=0.25, left=0.18, right=0.96)
@@ -154,7 +154,7 @@ ax.yaxis.tick_right()
 ax.set_xlim(4, 100)
 
 #ax.tick_params(left = False, which="both")
-legend = ax.legend(fontsize=5, loc='upper left', bbox_to_anchor=(-0.95, 1.05), edgecolor='black', ncol=3)
+legend = ax.legend(fontsize=5.8, loc='upper left', bbox_to_anchor=(-0.95, 1.01), edgecolor='black', ncol=3)
 legend.get_frame().set_alpha(0.)
 legend.get_frame().set_boxstyle('Square', pad=0.1)
 legend.get_frame().set_linewidth(0.0)
