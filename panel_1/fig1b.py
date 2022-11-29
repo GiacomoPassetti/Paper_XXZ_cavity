@@ -47,14 +47,14 @@ PT = PT_A(US_dmrg, Omega, g0)
 
 
 nphs =[]
-fontsize = 10
+fontsize = 8
 nrow = 3
 ncol = 1
 #gs_dict = dict(width_ratios = [1., 0.1, 0.5], height_ratios=[1.], wspace=0.0, hspace=0.0, top=0.95, bottom=0.18, left=0.2, right=0.82)
 #fig, axd = plt.subplot_mosaic([['left', 'middle', 'right']], figsize = (3.2, 2.5), gridspec_kw=gs_dict
 fig = plt.figure(figsize=(3.2, 2.5), dpi = 800)
-gs = gridspec.GridSpec(nrow, ncol,height_ratios = [1.1, 0.4, 0.6],
-         wspace=0.0, hspace=0.0, top=0.97, bottom=0.16, left=0.22, right=0.95)
+gs = gridspec.GridSpec(nrow, ncol,height_ratios = [1.1, 0.15, 0.6],
+         wspace=0.0, hspace=0.0, top = 0.87,  bottom=0.16, left=0.22, right=0.95)
 ax1 = plt.subplot(gs[2,0])
 axSpace = plt.subplot(gs[1,0])
 ax2 = plt.subplot(gs[0,0])
@@ -95,23 +95,24 @@ MF_A = MF_A - 1- (2*n_phot)
 ADD_sq = np.array(ADD_sq)
 nph_SQ = np.array(nph_SQ)
 ADD_sq = ADD_sq - 1- (2*nph_SQ)
-ax1.plot(US_dmrg, A_sqd, color = 'lightcoral', label= "DMRG", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6, zorder = 666)
-ax1.plot(US_dmrg, MF_A, ls = "--", color = "black", label = "MF",  linewidth = 0.8)
+ax1.plot(US_dmrg, A_sqd, color = 'grey', label= "DMRG", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6)
+ax1.plot(US_dmrg, MF_A, ls = "--", color = "darkorange", label = "MF",  linewidth = 1.5)
+ax2.plot(US_dmrg, A_sqd, color = 'grey', label= "DMRG", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6)
+ax2.plot(US_dmrg, MF_A, ls = "--", color = "darkorange", label = "MF",  linewidth = 1.5)
 #ax2.plot(US_dmrg, PT, ls = "--", color = "gray", label = "PT")
 #ax1.plot(US_dmrg, PT, ls = "--", color = "gray", label = "PT")
 
 ax1.set_xlim(0, 6)
 #ax.legend()
-ax1.plot(US_squeeze_plot, ADD_sq, zorder = -666, label = "Eq.(11)", color = 'cornflowerblue')
-ax2.plot(US_squeeze_plot, ADD_sq, label = "Eq.(11)", color = 'cornflowerblue')
-ax1.set_xlabel(r"$U$", fontsize = fontsize, loc = "center")
+ax1.plot(US_squeeze_plot, ADD_sq, label = "Eq.(14)", color = 'black', zorder = -666, lw = 1.5)
+ax2.plot(US_squeeze_plot, ADD_sq, label = "Eq.(14)", color = 'black', zorder=-666 , lw = 1.5)
+ax1.set_xlabel(r"$U\left[t_{\rm h}\right]$", fontsize = fontsize, loc = "center")
 #ax1.set_xlabel(r"$U$", fontsize = fontsize, loc = "center")
 ax1.set_ylabel(r"$\langle aa + a^{\dagger}a^{\dagger}\rangle $", fontsize = fontsize)
-ax2.set_xlabel(r"$U$", fontsize = fontsize, loc = "center")
+ax2.set_xlabel(r"$U\left[t_{\rm h}\right]$", fontsize = fontsize, loc = "center")
 #ax1.set_xlabel(r"$U$", fontsize = fontsize, loc = "center")
 ax2.set_ylabel(r"$\langle aa + a^{\dagger}a^{\dagger}\rangle $", fontsize = fontsize)
-ax2.plot(US_dmrg, A_sqd, color = 'lightcoral', label= "DMRG", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6)
-ax2.plot(US_dmrg, MF_A, ls = "--", color = "black", label = "MF",  linewidth = 0.8)
+
 ax2.set_xlim(0, 100)
 
 ax2.set_yticks([- 0.06, -0.04, -0.02, 0])
@@ -120,8 +121,8 @@ ax2.set_yticklabels(["$- 0.06$", "$-0.04$", "$-0.02$", "$0$"], fontsize = fontsi
 ax1.set_yticklabels(["$- 0.06$", "$-0.04$", "$-0.02$", "$0$"], fontsize = fontsize)
 
 
-ax2.set_xticks([0, 25, 50, 75, 100])
-ax2.set_xticklabels([r"$0$", r"$25$", r"$50$", r"$75$", "$100$"] ,fontsize = fontsize)
+ax2.set_xticks([0, 50, 100])
+ax2.set_xticklabels([r"$0$", r"$50$", "$100$"] ,fontsize = fontsize)
 
 #ax2.text(8., -0.05, r"$\langle a + a^{\dagger}\rangle = 0$", fontsize = 10)
 #ax1.set_ylim(0.94, 1)
@@ -142,13 +143,14 @@ ax1.set_ylim(-0.06, 0.001)
 ax2.set_ylim(-0.06, 0.001)
 ax1.text(1.2, -0.03, "BKT", color = "silver")
 ax1.axvline(2, 0, 1, zorder = 0, ls = "dashdot", color = "silver", linewidth = 0.85)
-legend = ax2.legend(fontsize=6, loc='upper right', edgecolor='black', ncol=1)
+legend = ax2.legend(fontsize=6, loc='upper right', edgecolor='black', ncol=1, bbox_to_anchor=(1, 0.85))
 legend.get_frame().set_alpha(0.)
 legend.get_frame().set_boxstyle('Square', pad=0.1)
 legend.get_frame().set_linewidth(0.0)
 ax1.set_clip_on(False)
 ax2.set_clip_on(False)
-axins = inset_axes(ax2, width=1, height=0.45, loc = "center")
+axins = inset_axes(ax2, width=1, height=0.45, loc = 'center')
+#axins = inset_axes(ax2, width=1, height=1, loc = 'upper center', bbox_to_anchor=(0, 0))
 
 myblue5 = '#406080'
 myyellow4 = '#E6BB65'
@@ -170,20 +172,23 @@ from matplotlib.patches import ConnectionPatch
 #ax2.add_artist(con)
 #ax2.add_artist(conB)
 
-rect = patches.Rectangle((0, -0.06), 6, 0.06, linewidth=0.5 , edgecolor='grey', facecolor='none',zorder = 10000000)
+rect = patches.Rectangle((0, -0.06), 6, 0.06, linewidth=0.5 , edgecolor='black', facecolor='none',zorder = 10000000)
 
 # Add the patch to the Axes
 ax2.add_patch(rect)
 xy1 = (0,-0.06)
 xy2 = (0, 0.00)
 con = ConnectionPatch(xyA=xy1, xyB=xy2, coordsA="data", coordsB="data",
-                      axesA=ax2, axesB=ax1, color="grey", lw = 0.5, zorder = -95)
+                      axesA=ax2, axesB=ax1, color="black", lw = 0.5, zorder = -95)
 xy1 = (6,-0.06)
 xy2 = (6, 0)
 conB = ConnectionPatch(xyA=xy1, xyB=xy2, coordsA="data", coordsB="data",
-                  axesA=ax2, axesB=ax1, color="grey", lw = 0.5, zorder = -95)
+                  axesA=ax2, axesB=ax1, color="black", lw = 0.5, zorder = -95)
 ax2.add_artist(con)
 ax2.add_artist(conB)
+ax2.xaxis.tick_top()
+ax2.xaxis.set_label_position('top') 
+plt.text(0.16, 0.94, r"$\rm{b)}$", fontsize=10, transform=plt.gcf().transFigure)
 plt.savefig(os.path.join("plots","fig1b"+".png"))
 
 #fig, ax = plt.subplots()

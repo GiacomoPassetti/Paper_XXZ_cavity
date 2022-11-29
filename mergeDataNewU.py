@@ -12,12 +12,12 @@ import time
 import pickle
 from scipy.integrate import quad
 import os
-Us = np.arange(0, 4.05, 0.05)
-L = 50
+Us = np.arange(0, 4.2, 0.2)
+L = 210
 Nmax = 16
 chi = 1000
 Omega = 1
-g0 = 1
+g0 = 0.0
 
 nphs = []
 correlation = []

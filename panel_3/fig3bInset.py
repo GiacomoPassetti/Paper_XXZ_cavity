@@ -13,7 +13,7 @@ from matplotlib import gridspec
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 fontsize = 10
-colors = plt.cm.bone(np.linspace(0, 1, 7))
+colors = plt.cm.pink(np.linspace(0, 1, 7))
 
 Ls = [22, 50, 110]
 g0 = 0.3
@@ -48,7 +48,7 @@ def inset_corr(ax1):
    
    
    
-   chis = [1000, 1500, 1000]
+   chis = [1000, 1500, 1000, 1000]
    for i in range(len(Ls)):
         final_ID = "L_"+"{:.2f}".format(Ls[i])+"chi_"+str(chi)+"g_"+"{:.2f}".format(g0)+"omega_"+"{:.3f}".format(Omega)
         yArr1 = np.load(os.path.join("../XXZ/correlation_functions", "correlation_functions_jointed"+final_ID+".npy"))
@@ -57,21 +57,16 @@ def inset_corr(ax1):
    
         yArr1 = yArr1[0:32] - data_g0
         ax1.plot(Ussr[0:32], yArr1, color = colors[-3 -i], label= r"$L = $"+str(Ls[i]))
-   
-   US_210 = np.arange(0, 4.2, 0.2)
-   deleteInd = 16
-   US_210 = np.delete(US_210, deleteInd)
-   print(US_210)
    final_ID = "new_U_L_"+"{:.2f}".format(210)+"chi_"+str(chi)+"g_"+"{:.2f}".format(g0)+"omega_"+"{:.3f}".format(Omega)
    yArr1 = np.load(os.path.join("../XXZ/correlation_functions", "correlation_functions_jointed"+final_ID+".npy"))
-   yArr1 = np.delete(yArr1, deleteInd)
    final_ID = "new_U_L_"+"{:.2f}".format(210)+"chi_"+str(chi)+"g_"+"{:.2f}".format(0)+"omega_"+"{:.3f}".format(Omega)
    data_g0 = np.load(os.path.join("../XXZ/correlation_functions", "correlation_functions_jointed"+final_ID+".npy"))
-   data_g0 = np.delete(data_g0, deleteInd)
-   print(data_g0)
-   yArr1 = yArr1 - data_g0
-   print(yArr1)
-   ax1.plot(US_210, yArr1, color = colors[1], label= r"$L = $"+str(210))
+   print(yArr1, data_g0)
+   yArr1 = yArr1[0:52] - data_g0[0:52]
+   new_Us = np.arange(0, 4.2, 0.2)
+   ax1.plot(new_Us, yArr1, color = colors[-6], label= r"$L = $"+str(210),  marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.4)
+   
+
    
    #MF = np.load(os.path.join("data", "mean_field_correlation_functions_jointedL_110.00chi_600g_0.30omega_1.000.npy"))
    #MF = MF.reshape(32)
@@ -83,7 +78,7 @@ def inset_corr(ax1):
    
    
    
-   ax1.set_xlabel(r"$U$", fontsize = fontsize)
+   ax1.set_xlabel(r"$U\left[t_{\rm h}\right]$", fontsize = fontsize)
    ax1.set_ylabel(r"$C-C|_{g = 0}$", fontsize = fontsize)
    
    #ax1.set_yticks([0, 0.025, 0.055])

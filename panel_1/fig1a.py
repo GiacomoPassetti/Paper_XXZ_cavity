@@ -12,7 +12,7 @@ from matplotlib import gridspec
 from fig1aInset import plotPtGSWithCoh
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
-fontsize = 10
+
 
 def plot_occ(L ,g0, Omega, chi ):
     mpl.rcParams['lines.linewidth'] = 2
@@ -32,7 +32,7 @@ def plot_occ(L ,g0, Omega, chi ):
     Ussr2 = np.arange(1.5, 4.1, 0.1)
     Ussr= np.append(Ussr1, Ussr2)
     Ussr = np.append(Ussr, np.logspace(np.log10(4), 2, 20))
-    fontsize = 10
+    fontsize = 8
     nrow = 3
     ncol = 1
 
@@ -41,8 +41,8 @@ def plot_occ(L ,g0, Omega, chi ):
 
     fig = plt.figure(figsize=(3.2, 2.5), dpi = 800)
 
-    gs = gridspec.GridSpec(nrow, ncol,height_ratios = [1, 0.4, 0.6],
-             wspace=0.0, hspace=0.0, top=0.97, bottom=0.12, left=0.22, right=0.82)
+    gs = gridspec.GridSpec(nrow, ncol,height_ratios = [1.1, 0.15, 0.6],
+             wspace=0.0, hspace=0.0, top=0.87, bottom=0.16, left=0.22, right=0.82)
 
 
     ax1 = plt.subplot(gs[2,0])
@@ -95,27 +95,28 @@ def plot_occ(L ,g0, Omega, chi ):
     ax3 = ax1.twinx()
     ax4 = ax2.twinx()
 
-    ax1.plot(Ussr, yArr1, color = 'lightcoral', label= "DMRG", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6)
-    ax1.plot(Ussr, yArr2 ,color = 'black', ls = "--", linewidth = 0.8, label = r"$\rm{MF}$")
+    ax1.plot(Ussr, yArr1, color = colors[2], label= "DMRG", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6)
+    ax3.plot(Ussr, yArr_ent,color = '#E6BB7F', marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6, label = r"$S_{e-ph}$", lw = 0.8)
+    ax1.plot(Ussr, yArr2 ,color = 'red', ls = "--", linewidth = 0.8, label = r"$\rm{MF}$", zorder = 666666666666)
     #ax1.plot(Ussr, nPhotT ,color = 'green', ls = "-", linewidth = 0.8, label = r"$\rm{MF}$")
-    ax1.plot([], [],color = colors[2], label = r"$S_{\rm{e{-}ph}}$", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6)
-    ax3.plot(Ussr, yArr_ent,color = colors[2], marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6, label = r"$S_{e-ph}$")
-
-    ax2.plot(Ussr, yArr1, color = 'lightcoral',marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6, label= "DMRG")
-    ax2.plot(Ussr, yArr2,color = 'black', ls = "--", linewidth = 0.8, label = r"$\rm{MF}$")
-
-    ax4.plot(Ussr, yArr_ent,color = colors[2], marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6, label = r"$S_{e-ph}$")
+    ax1.plot([], [],color = '#E6BB7F', label = r"$S_{\rm{e{-}ph}}$", marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6)
     
 
-    ax1.xaxis.set_label_coords(0.8, -0.10)
+    plot_dmrg, = ax2.plot(Ussr, yArr1, color = colors[2],marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6, label= "DMRG")
+    plot_MF, = ax2.plot(Ussr, yArr2,color = 'red', ls = "--", linewidth = 0.8, label = r"$\rm{MF}$")
 
-    ax1.set_xlabel(r"$U$", fontsize = fontsize, loc = "center")
-    ax2.set_xlabel(r"$U$", fontsize = fontsize, loc = "center")
+    plot_S, = ax4.plot(Ussr, yArr_ent,color = '#E6BB7F', marker='D', markeredgecolor='black', markersize = 3, markeredgewidth=0.6, label = r"$S_{e-ph}$", lw = 0.8)
+    
+
+  
+
+    ax1.set_xlabel(r"$U\left[t_{\rm h}\right]$", fontsize = fontsize, loc = "center")
+    ax2.set_xlabel(r"$U\left[t_{\rm h}\right]$", fontsize = fontsize, loc = "center")
     #ax1.set_xlabel(r"$U$", fontsize = fontsize, loc = "right")
     ax1.set_ylabel(r"$N_{\rm{phot}}$", fontsize = fontsize)
     ax2.set_ylabel(r"$N_{\rm{phot}}$", fontsize = fontsize)
-    ax3.set_ylabel(r"$S_{\rm{e{-}ph}}$", fontsize = fontsize)
-    ax4.set_ylabel(r"$S_{\rm{e{-}ph}}$", fontsize = fontsize)
+    ax3.set_ylabel(r"$S_{\rm{f{-}ph}}$", fontsize = fontsize)
+    ax4.set_ylabel(r"$S_{\rm{f{-}ph}}$", fontsize = fontsize)
 
 
 
@@ -147,19 +148,19 @@ def plot_occ(L ,g0, Omega, chi ):
     #ax2.set_xticks([10, 100])
     #ax2.set_xticklabels([r"$10^{1}$", r"$10^{2}$"] ,fontsize = fontsize)
     
-    ax2.set_xticks([0, 25, 50, 75, 100])
-    ax2.set_xticklabels([r"$0$", r"$25$", r"$50$", r"$75$", "$100$"] ,fontsize = fontsize)
+    ax2.set_xticks([0,  50, 100])
+    ax2.set_xticklabels([r"$0$", r"$50$", "$100$"] ,fontsize = fontsize)
     ax1.set_yticks([])
     ax1.set_yticks([0, 0.002, 0.004, 0.006])
     ax1.set_yticklabels([r"$0$", r"$0.002$", r"$0.004$", r"$0.006$"] ,fontsize = fontsize)
     ax2.set_yticks([0, 0.002, 0.004, 0.006])
     ax2.set_yticklabels([r"$0$", r"$0.002$", r"$0.004$", r"$0.006$"] ,fontsize = fontsize)
     prop = dict(arrowstyle="-|>,head_width=0.4,head_length=0.8",
-            shrinkA=0,shrinkB=0, color = "lightcoral")
+            shrinkA=0,shrinkB=0, color = colors[2])
 
     ax1.annotate("", xy=(0.1,.003), xytext=(1.5,0.001), arrowprops=prop)
     prop2 = dict(arrowstyle="-|>,head_width=0.4,head_length=0.8",
-            shrinkA=0,shrinkB=0, color = colors[2])
+            shrinkA=0,shrinkB=0, color = '#E6BB7F')
 
     ax1.annotate("", xy=(5.9,.004), xytext=(4.9,0.0035), arrowprops=prop2)
     ax3.set_yticks([0, 0.01, 0.02, 0.03, 0.04])
@@ -174,23 +175,31 @@ def plot_occ(L ,g0, Omega, chi ):
     #legend.get_frame().set_alpha(0.)
     #legend.get_frame().set_boxstyle('Square', pad=0.1)
     #legend.get_frame().set_linewidth(0.0)
-    axins = inset_axes(ax2, width=0.65, height=0.6, loc = "upper right")
-    rect = patches.Rectangle((0, 0), 6, 0.038, linewidth=0.5 , edgecolor='grey', facecolor='none',zorder = 10000000)
-
+    axins = inset_axes(ax2, width=0.75, height=0.6, loc = "upper right")
+    rect = patches.Rectangle((0, 0), 6, 0.0395, linewidth=0.5 , edgecolor='black', facecolor='none',zorder = 10000000)
+    from matplotlib.legend_handler import HandlerLine2D, HandlerTuple
+    legend = ax2.legend( [(plot_dmrg, plot_S), plot_MF], ['DMRG', 'MF'],fontsize=6, loc='upper center', edgecolor='black', ncol=1, bbox_to_anchor=(0.3, 1.01), numpoints=1,
+              handler_map={tuple: HandlerTuple(ndivide=None)})
+    legend.get_frame().set_alpha(0.)
+    legend.get_frame().set_boxstyle('Square', pad=0.1)
+    legend.get_frame().set_linewidth(0.0)
 # Add the patch to the Axes
     ax4.add_patch(rect)
     from matplotlib.patches import ConnectionPatch
     xy1 = (0,0)
     xy2 = (0, 0.006)
     con = ConnectionPatch(xyA=xy1, xyB=xy2, coordsA="data", coordsB="data",
-                          axesA=ax2, axesB=ax1, color="grey", lw = 0.5, zorder = -95)
+                          axesA=ax2, axesB=ax1, color="black", lw = 0.5, zorder = -95)
     xy1 = (6,0)
     xy2 = (6, 0.006)
     conB = ConnectionPatch(xyA=xy1, xyB=xy2, coordsA="data", coordsB="data",
-                      axesA=ax2, axesB=ax1, color="grey", lw = 0.5, zorder = -95)
+                      axesA=ax2, axesB=ax1, color="black", lw = 0.5, zorder = -95)
     ax2.add_artist(con)
     ax2.add_artist(conB)
     plotPtGSWithCoh(axins, chi, g0, Omega)
+    ax2.xaxis.tick_top()
+    ax2.xaxis.set_label_position('top') 
+    plt.text(0.16, 0.94, r"$\rm{a)}$", fontsize=10, transform=plt.gcf().transFigure)
     plt.savefig(os.path.join("plots" ,"fig1a.png"))
 
     
